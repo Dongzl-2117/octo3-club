@@ -1,0 +1,56 @@
+[
+  {
+    "id": "python-tutorial",
+    "title": "Python Official Tutorial",
+    "description": "Official Python programming language tutorial for beginners",
+    "category": "Programming",
+    "url": "https://docs.python.org/3/tutorial/",
+    "fileType": "web"
+  },
+  {
+    "id": "algorithms-book",
+    "title": "Introduction to Algorithms PDF",
+    "description": "Classic textbook on algorithms and data structures, in-depth coverage of various algorithms",
+    "category": "Algorithms",
+    "url": "https://example.com/algorithms-book.pdf",
+    "fileType": "pdf",
+    "fileSize": "15.2 MB",
+    "downloadable": true
+  },
+  {
+    "id": "ml-notes",
+    "title": "Stanford Machine Learning Course Notes",
+    "description": "Complete notes from Stanford University CS229 Machine Learning course",
+    "category": "Machine Learning",
+    "url": "https://example.com/ml-notes.docx",
+    "fileType": "docx",
+    "fileSize": "3.8 MB"
+  },
+  {
+    "id": "react-guide",
+    "title": "React Development Guide",
+    "description": "Complete React framework development guide with best practices and advanced techniques",
+    "category": "Web Development",
+    "url": "https://example.com/react-guide.pdf",
+    "fileType": "pdf",
+    "fileSize": "4.5 MB"
+  },
+  {
+    "id": "data-analysis-template",
+    "title": "Data Analysis Excel Template",
+    "description": "Common Excel template for data analysis with various charts and formulas",
+    "category": "Machine Learning",
+    "url": "https://example.com/analysis-template.xlsx",
+    "fileType": "xlsx",
+    "fileSize": "1.2 MB"
+  },
+  {
+    "id": "deep-learning-slides",
+    "title": "Deep Learning Introduction Slides",
+    "description": "PPT slides covering fundamental concepts of deep learning",
+    "category": "Machine Learning",
+    "url": "https://example.com/deep-learning.pptx",
+    "fileType": "pptx",
+    "fileSize": "8.5 MB"
+  }
+]

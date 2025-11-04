@@ -1,0 +1,65 @@
+[
+  {
+    "id": "ml-intro-2024",
+    "title": "Introduction to Machine Learning",
+    "description": "An overview of machine learning concepts, common algorithms, and real-world applications",
+    "detailedDescription": "This presentation will dive deep into the core concepts of machine learning, including supervised learning, unsupervised learning, and reinforcement learning. We will demonstrate how to choose appropriate algorithms through practical case studies and share best practices for model training and optimization.\n\nTopics covered:\n- Machine Learning Fundamentals\n- Common Algorithms (Linear Regression, Decision Trees, Neural Networks, etc.)\n- Real-world Project Case Studies\n- Model Evaluation and Optimization Techniques",
+    "speaker": "John Smith",
+    "date": "2024-11-15",
+    "status": "upcoming",
+    "topics": ["Machine Learning", "Python", "Data Science", "Neural Networks"],
+    "slides": [
+      {
+        "name": "Introduction to Machine Learning.pdf",
+        "url": "https://example.com/ml-intro.pdf",
+        "type": "pdf",
+        "size": "3.2 MB"
+      },
+      {
+        "name": "Presentation Notes.docx",
+        "url": "https://example.com/notes.docx",
+        "type": "docx",
+        "size": "1.5 MB"
+      }
+    ],
+    "materials": [
+      {
+        "name": "Example Code Repository",
+        "url": "https://github.com/example/ml-examples",
+        "type": "web"
+      },
+      {
+        "name": "Reference Dataset.xlsx",
+        "url": "https://example.com/dataset.xlsx",
+        "type": "xlsx",
+        "size": "2.8 MB"
+      }
+    ]
+  },
+  {
+    "id": "web-dev-2024",
+    "title": "Modern Web Development Best Practices",
+    "description": "Share tips, tools, and architecture design for modern web development",
+    "detailedDescription": "In this presentation, we will explore best practices in modern web development, including frontend framework selection, performance optimization strategies, and how to build maintainable large-scale applications.",
+    "speaker": "Jane Doe",
+    "date": "2024-10-20",
+    "status": "past",
+    "topics": ["Web Development", "React", "TypeScript", "Performance Optimization"],
+    "slides": [
+      {
+        "name": "Web Development Best Practices.pptx",
+        "url": "https://example.com/web-dev.pptx",
+        "type": "pptx",
+        "size": "5.1 MB"
+      }
+    ],
+    "recording": "https://youtube.com/watch?v=example",
+    "materials": [
+      {
+        "name": "Project Template",
+        "url": "https://github.com/example/web-template",
+        "type": "web"
+      }
+    ]
+  }
+]

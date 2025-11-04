@@ -1,363 +1,484 @@
-# Octo3 Club 网站
+# Octo3 Club Website
 
-这是 Octo3 Club 的静态网站，使用 React + TypeScript + Vite 构建，专为 GitHub Pages 部署设计。
+This is a static website for Octo3 Club, built with React + TypeScript + Vite, designed for GitHub Pages deployment.
 
-## 📚 目录
+## 📚 Table of Contents
 
-- [快速开始](#快速开始)
-- [如何编辑网站内容](#如何编辑网站内容)
-- [文件结构说明](#文件结构说明)
-- [开发指南](#开发指南)
-- [部署到 GitHub Pages](#部署到-github-pages)
-- [技术栈](#技术栈)
+- [Quick Start](#quick-start)
+- [Editing Website Content](#editing-website-content)
+- [File Structure](#file-structure)
+- [Development Guide](#development-guide)
+- [Deploying to GitHub Pages](#deploying-to-github-pages)
+- [Tech Stack](#tech-stack)
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 环境要求
+### Requirements
 
-- Node.js 18+ 
-- pnpm (推荐) 或 npm
+- Node.js 18+
+- pnpm (recommended) or npm
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
 pnpm install
 ```
 
-### 本地运行
+### Run Locally
 
 ```bash
-# 启动开发服务器（带热更新）
+# Start development server (with hot reload)
 pnpm dev
 ```
 
-访问 http://localhost:5173 查看网站
+Visit http://localhost:5173 to view the website
 
-### 构建生产版本
+### Build for Production
 
 ```bash
-# 构建静态文件到 dist 目录
+# Build static files to dist directory
 pnpm build
 
-# 预览构建结果
+# Preview build result
 pnpm preview
 ```
 
-## ✏️ 如何编辑网站内容
+## ✏️ Editing Website Content
 
-网站的所有数据都存储在 `src/data/` 目录下的 JSON 文件中。编辑这些文件即可更新网站内容，无需修改代码。
+All website data is stored in JSON files under the `src/data/` directory. Edit these files to update website content without modifying code.
 
-### 1. 编辑演讲内容 (`src/data/presentations.json`)
+### 1. Edit Presentations (`src/data/presentations.json`)
 
-演讲数据文件包含所有的演讲记录。每个演讲条目的格式如下：
+The presentations data file contains all presentation records. Each presentation entry follows this format:
 
 ```json
 {
   "id": "1",
-  "title": "演讲标题",
-  "description": "演讲简介，会显示在卡片上",
-  "speaker": "演讲者姓名",
+  "title": "Presentation Title",
+  "description": "Brief description shown on the card",
+  "detailedDescription": "Detailed presentation description shown on the detail page",
+  "speaker": "Speaker Name",
   "date": "2024-01-15",
   "status": "upcoming",
-  "slides": "https://example.com/slides.pdf",
-  "video": "https://example.com/video.mp4"
+  "topics": ["Machine Learning", "Deep Learning", "Neural Networks"],
+  "slides": [
+    {
+      "name": "Presentation Slides",
+      "url": "https://example.com/slides.pdf",
+      "type": "pdf",
+      "size": "2.5 MB"
+    },
+    {
+      "name": "Additional Notes",
+      "url": "https://example.com/notes.docx",
+      "type": "docx",
+      "size": "1.2 MB"
+    }
+  ],
+  "recording": "https://youtube.com/watch?v=xxxxx",
+  "materials": [
+    {
+      "name": "Code Examples",
+      "url": "https://github.com/example/repo",
+      "type": "web"
+    },
+    {
+      "name": "Dataset",
+      "url": "https://example.com/dataset.xlsx",
+      "type": "xlsx",
+      "size": "5.8 MB"
+    }
+  ]
 }
 ```
 
-**字段说明：**
+**Field Descriptions:**
 
-- `id`: 唯一标识符（字符串）
-- `title`: 演讲标题
-- `description`: 演讲简介
-- `speaker`: 演讲者名字
-- `date`: 演讲日期，格式为 `YYYY-MM-DD`
-- `status`: 演讲状态
-  - `"upcoming"` - 即将到来的演讲（会显示在首页）
-  - `"past"` - 过去的演讲
-- `slides`: （可选）演讲幻灯片链接
-- `video`: （可选）演讲视频链接
+- `id`: Unique identifier (string, required)
+- `title`: Presentation title (required)
+- `description`: Brief description shown on list page (required)
+- `detailedDescription`: (Optional) Detailed description shown on detail page
+- `speaker`: Speaker name (required)
+- `date`: Presentation date in `YYYY-MM-DD` format (required)
+- `status`: Presentation status (required)
+  - `"upcoming"` - Upcoming presentations
+  - `"past"` - Past presentations
+- `topics`: (Optional) Array of topic tags covered in the presentation
+- `slides`: (Optional) Array of presentation files, each containing:
+  - `name`: File name
+  - `url`: File URL
+  - `type`: File type (`"pdf"`, `"ppt"`, `"pptx"`, `"doc"`, `"docx"`, `"xls"`, `"xlsx"`, `"image"`, `"video"`, `"web"`, `"other"`)
+  - `size`: (Optional) File size
+- `recording`: (Optional) Recording link (supports YouTube embedding)
+- `materials`: (Optional) Array of additional materials, same format as `slides`
 
-**添加新演讲：**
-
-在数组中添加新的对象：
+**Adding a New Presentation:**
 
 ```json
 [
   {
     "id": "1",
-    "title": "机器学习入门",
-    "description": "介绍机器学习的基本概念和常用算法",
-    "speaker": "张三",
+    "title": "Introduction to Machine Learning",
+    "description": "An overview of machine learning concepts and common algorithms",
+    "detailedDescription": "This presentation will dive deep into the core concepts of machine learning, including supervised learning, unsupervised learning, and reinforcement learning.",
+    "speaker": "John Smith",
     "date": "2024-11-10",
     "status": "upcoming",
-    "slides": "https://example.com/ml-intro.pdf"
-  },
-  {
-    "id": "2",
-    "title": "Web开发最佳实践",
-    "description": "分享现代Web开发的技巧和工具",
-    "speaker": "李四",
-    "date": "2024-10-20",
-    "status": "past",
-    "video": "https://youtube.com/watch?v=xxxxx"
+    "topics": ["Machine Learning", "Python", "Data Science"],
+    "slides": [
+      {
+        "name": "ML Introduction.pdf",
+        "url": "https://example.com/ml-intro.pdf",
+        "type": "pdf",
+        "size": "3.2 MB"
+      }
+    ],
+    "materials": [
+      {
+        "name": "Example Code",
+        "url": "https://github.com/example/ml-examples",
+        "type": "web"
+      }
+    ]
   }
 ]
 ```
 
-### 2. 编辑学习资源 (`src/data/resources.json`)
+**Click on any presentation card to view the detail page with complete information, all files, and recordings.**
 
-资源数据文件包含所有推荐的学习资源。每个资源条目的格式如下：
+### 2. Edit Resources (`src/data/resources.json`)
+
+The resources data file contains all recommended learning resources. It supports multiple file types including PDF, Word, PPT, Excel, images, videos, and web links.
+
+Each resource entry follows this format:
 
 ```json
 {
   "id": "1",
-  "title": "资源标题",
-  "description": "资源简介",
-  "category": "分类名称",
-  "url": "https://example.com"
+  "title": "Resource Title",
+  "description": "Resource description",
+  "category": "Category Name",
+  "url": "https://example.com/resource.pdf",
+  "fileType": "pdf",
+  "fileSize": "2.5 MB",
+  "downloadable": true
 }
 ```
 
-**字段说明：**
+**Field Descriptions:**
 
-- `id`: 唯一标识符（字符串）
-- `title`: 资源标题
-- `description`: 资源描述
-- `category`: 资源分类（如：编程、算法、机器学习、Web开发等）
-- `url`: 资源链接
+- `id`: Unique identifier (string, required)
+- `title`: Resource title (required)
+- `description`: Resource description (required)
+- `category`: Resource category (required)
+  - Recommended categories: `"Programming"`, `"Algorithms"`, `"Machine Learning"`, `"Web Development"`, etc.
+  - You can create custom categories
+- `url`: Resource URL (required)
+- `fileType`: File type (required)
+  - Supported types: `"pdf"`, `"doc"`, `"docx"`, `"ppt"`, `"pptx"`, `"xls"`, `"xlsx"`, `"image"`, `"video"`, `"web"`, `"other"`
+- `fileSize`: (Optional) File size, e.g., `"2.5 MB"`
+- `downloadable`: (Optional) Whether the file can be downloaded, defaults to `true`. Set to `false` to hide download button
 
-**添加新资源：**
+**File Type Descriptions:**
+
+- `pdf` - PDF documents (red icon)
+- `doc/docx` - Word documents (blue icon)
+- `ppt/pptx` - PowerPoint presentations (orange icon)
+- `xls/xlsx` - Excel spreadsheets (green icon)
+- `image` - Image files (purple icon)
+- `video` - Video files (pink icon)
+- `web` - Web links (blue icon, no download button)
+- `other` - Other file types (gray icon)
+
+**Adding New Resources:**
 
 ```json
 [
   {
     "id": "1",
-    "title": "Python官方教程",
-    "description": "Python编程语言的官方入门教程",
-    "category": "编程",
-    "url": "https://docs.python.org/3/tutorial/"
+    "title": "Python Official Tutorial",
+    "description": "Official Python programming language tutorial for beginners",
+    "category": "Programming",
+    "url": "https://docs.python.org/3/tutorial/",
+    "fileType": "web"
   },
   {
     "id": "2",
-    "title": "算法导论",
-    "description": "经典的算法与数据结构教材",
-    "category": "算法",
-    "url": "https://mitpress.mit.edu/books/introduction-algorithms"
+    "title": "Introduction to Algorithms PDF",
+    "description": "Classic textbook on algorithms and data structures",
+    "category": "Algorithms",
+    "url": "https://example.com/algorithms-book.pdf",
+    "fileType": "pdf",
+    "fileSize": "15.2 MB",
+    "downloadable": true
+  },
+  {
+    "id": "3",
+    "title": "Machine Learning Course Notes",
+    "description": "Complete notes from Stanford CS229 Machine Learning course",
+    "category": "Machine Learning",
+    "url": "https://example.com/ml-notes.docx",
+    "fileType": "docx",
+    "fileSize": "3.8 MB"
+  },
+  {
+    "id": "4",
+    "title": "Data Analysis Template",
+    "description": "Common Excel template for data analysis with charts and formulas",
+    "category": "Machine Learning",
+    "url": "https://example.com/analysis-template.xlsx",
+    "fileType": "xlsx",
+    "fileSize": "1.2 MB"
   }
 ]
 ```
 
-### 3. 编辑活动照片 (`src/data/photos.json`)
+**Resource Page Features:**
 
-照片数据文件包含活动图库中的所有照片。每个照片条目的格式如下：
+- Automatically grouped by category
+- Different icons and colors based on file type
+- Support for online viewing and downloading
+- File size information displayed
+
+### 3. Edit Photos (`src/data/photos.json`)
+
+The photos data file contains all photos in the gallery. Each photo entry follows this format:
 
 ```json
 {
   "id": "1",
   "url": "https://example.com/photo.jpg",
-  "caption": "照片描述"
+  "caption": "Photo description"
 }
 ```
 
-**字段说明：**
+**Field Descriptions:**
 
-- `id`: 唯一标识符（字符串）
-- `url`: 图片链接（可以是外部链接或相对路径）
-- `caption`: 图片说明文字
+- `id`: Unique identifier (string)
+- `url`: Image URL (can be external link or relative path)
+- `caption`: Photo caption text
 
-**添加新照片：**
+**Adding New Photos:**
 
 ```json
 [
   {
     "id": "1",
     "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
-    "caption": "在图书馆的小组学习"
+    "caption": "Group study session at the library"
   },
   {
     "id": "2",
     "url": "/images/hackathon-2024.jpg",
-    "caption": "2024年黑客松活动"
+    "caption": "2024 Hackathon Event"
   }
 ]
 ```
 
-**图片建议：**
+**Image Recommendations:**
 
-- 推荐使用外部图床（如 Unsplash、imgur）或将图片放在 `public/images/` 目录
-- 如果使用本地图片，请放在 `public/images/` 文件夹，然后用 `/images/filename.jpg` 引用
-- 推荐图片尺寸：800-1200px 宽度
-- 推荐格式：JPG 或 WebP
+- Recommended to use external image hosting (e.g., Unsplash, imgur) or place images in `public/images/` directory
+- If using local images, place them in `public/images/` folder and reference with `/images/filename.jpg`
+- Recommended image size: 800-1200px width
+- Recommended format: JPG or WebP
 
-### 4. 修改页面内容
+### 4. Modify Page Content
 
-如果需要修改页面的文字、样式或布局，需要编辑对应的组件文件：
+If you need to modify page text, styles, or layout, edit the corresponding component files:
 
-- **首页**: `src/pages/Home.tsx`
-- **演讲页面**: `src/pages/Presentations.tsx`
-- **资源页面**: `src/pages/Resources.tsx`
-- **图库页面**: `src/pages/Gallery.tsx`
-- **关于页面**: `src/pages/About.tsx`
-- **导航栏**: `src/components/Header.tsx`
-- **页脚**: `src/components/Footer.tsx`
+- **Home Page**: `src/pages/Home.tsx`
+- **Presentations List**: `src/pages/Presentations.tsx`
+- **Presentation Detail**: `src/pages/PresentationDetail.tsx`
+- **Resources Page**: `src/pages/Resources.tsx`
+- **Gallery Page**: `src/pages/Gallery.tsx`
+- **About Page**: `src/pages/About.tsx`
+- **Navigation**: `src/components/Header.tsx`
+- **Footer**: `src/components/Footer.tsx`
 
-这些都是 React TypeScript 组件，可以直接编辑 HTML 结构和 Tailwind CSS 样式。
+These are React TypeScript components where you can directly edit HTML structure and Tailwind CSS styles.
 
-## 📁 文件结构说明
+**Note**: If you modify data structures (e.g., add new fields), you also need to update type definitions in `src/types/index.ts`.
+
+## 📁 File Structure
 
 ```
 hku-cs-study-group-static/
 ├── src/
-│   ├── components/          # React 组件
-│   │   ├── Header.tsx       # 导航栏组件
-│   │   └── Footer.tsx       # 页脚组件
-│   ├── pages/               # 页面组件
-│   │   ├── Home.tsx         # 首页
-│   │   ├── Presentations.tsx # 演讲页面
-│   │   ├── Resources.tsx    # 资源页面
-│   │   ├── Gallery.tsx      # 图库页面
-│   │   └── About.tsx        # 关于页面
-│   ├── data/                # 数据文件（重要！）
-│   │   ├── presentations.json  # 演讲数据
-│   │   ├── resources.json      # 资源数据
-│   │   └── photos.json         # 照片数据
-│   ├── App.tsx              # 应用主组件和路由配置
-│   ├── main.tsx             # 应用入口
-│   └── index.css            # 全局样式
-├── public/                  # 静态资源目录
-│   ├── 404.html            # GitHub Pages 404 处理
-│   └── images/             # 本地图片存放处（需自行创建）
-├── dist/                    # 构建输出目录（由 pnpm build 生成）
-├── package.json             # 项目依赖配置
-├── vite.config.ts          # Vite 配置
-├── tailwind.config.js      # Tailwind CSS 配置
-└── tsconfig.json           # TypeScript 配置
+│   ├── components/          # React components
+│   │   ├── Header.tsx       # Navigation component
+│   │   └── Footer.tsx      # Footer component
+│   ├── pages/               # Page components
+│   │   ├── Home.tsx         # Home page
+│   │   ├── Presentations.tsx      # Presentations list page
+│   │   ├── PresentationDetail.tsx # Presentation detail page
+│   │   ├── Resources.tsx    # Resources page
+│   │   ├── Gallery.tsx      # Gallery page
+│   │   └── About.tsx        # About page
+│   ├── data/                # Data files (important!)
+│   │   ├── presentations.json  # Presentations data
+│   │   ├── resources.json      # Resources data
+│   │   └── photos.json         # Photos data
+│   ├── types/               # TypeScript type definitions
+│   │   └── index.ts         # Data type interfaces
+│   ├── utils/               # Utility functions
+│   │   └── fileIcons.tsx    # File icon and color utilities
+│   ├── App.tsx              # Main app component and routing
+│   ├── main.tsx             # Application entry point
+│   └── index.css            # Global styles
+├── public/                  # Static assets directory
+│   ├── 404.html            # GitHub Pages 404 handling
+│   └── images/             # Local images storage (create if needed)
+├── dist/                    # Build output directory (generated by pnpm build)
+├── package.json             # Project dependencies
+├── vite.config.ts          # Vite configuration
+├── tailwind.config.js      # Tailwind CSS configuration
+└── tsconfig.json           # TypeScript configuration
 ```
 
-### 重要目录说明
+### Important Directories
 
-- **`src/data/`**: 所有网站内容数据都在这里，**编辑这个目录下的 JSON 文件即可更新网站内容**
-- **`src/pages/`**: 各个页面的组件，如需修改页面布局和样式可编辑这些文件
-- **`public/`**: 静态资源，如本地图片、favicon 等
-- **`dist/`**: 构建后的生产文件，会自动生成，无需手动编辑
+- **`src/data/`**: All website content data is stored here. **Edit JSON files in this directory to update website content**
+- **`src/pages/`**: Page components. Edit these files to modify page layout and styles
+- **`public/`**: Static assets such as local images, favicon, etc.
+- **`dist/`**: Production build files, automatically generated, no manual editing needed
 
-## 🛠 开发指南
+## 🛠 Development Guide
 
-### 常用命令
+### Common Commands
 
 ```bash
-# 安装依赖
+# Install dependencies
 pnpm install
 
-# 启动开发服务器
+# Start development server
 pnpm dev
 
-# 构建生产版本
+# Build for production
 pnpm build
 
-# 预览构建结果
+# Preview build result
 pnpm preview
 
-# 类型检查
+# Type checking
 pnpm type-check
 ```
 
-### 开发工作流
+### Development Workflow
 
-1. **修改内容**：编辑 `src/data/` 下的 JSON 文件
-2. **本地预览**：运行 `pnpm dev` 查看效果
-3. **构建测试**：运行 `pnpm build` 确保构建成功
-4. **提交代码**：
+1. **Edit Content**: Edit JSON files under `src/data/`
+2. **Preview Locally**: Run `pnpm dev` to see changes
+3. **Test Build**: Run `pnpm build` to ensure build succeeds
+4. **Commit Changes**:
    ```bash
    git add .
-   git commit -m "更新内容：描述你的修改"
+   git commit -m "Update content: describe your changes"
    git push
    ```
-5. **自动部署**：GitHub Actions 会自动部署到 GitHub Pages
+5. **Auto Deploy**: GitHub Actions will automatically deploy to GitHub Pages
 
-### 添加新页面
+### Adding New Pages
 
-如果需要添加新页面：
+If you need to add a new page:
 
-1. 在 `src/pages/` 创建新的 `.tsx` 文件
-2. 在 `src/App.tsx` 中添加路由：
+1. Create a new `.tsx` file in `src/pages/`
+2. Add route in `src/App.tsx`:
    ```tsx
    <Route path="/your-path" component={YourPage} />
    ```
-3. 在 `src/components/Header.tsx` 中添加导航链接
+3. Add navigation link in `src/components/Header.tsx`
 
-## 🌐 部署到 GitHub Pages
+## 🌐 Deploying to GitHub Pages
 
-### 自动部署（推荐）
+### Automatic Deployment (Recommended)
 
-本项目已配置 GitHub Actions 自动部署。每次推送到 `main` 分支时会自动触发部署：
+This project is configured with GitHub Actions for automatic deployment. Each push to the `main` branch will trigger deployment:
 
 ```bash
 git add .
-git commit -m "更新内容"
+git commit -m "Update content"
 git push origin main
 ```
 
-等待几分钟后，访问你的 GitHub Pages 地址查看更新。
+Wait a few minutes, then visit your GitHub Pages URL to see the updates.
 
-### 手动部署
+### Manual Deployment
 
 ```bash
-# 构建项目
+# Build project
 pnpm build
 
-# 部署到 gh-pages 分支
+# Deploy to gh-pages branch
 git subtree push --prefix dist origin gh-pages
 ```
 
-### 配置 GitHub Pages
+### GitHub Pages Configuration
 
-1. 进入 GitHub 仓库的 Settings
-2. 点击左侧 Pages
-3. Source 选择 `gh-pages` 分支
-4. 目录选择 `/ (root)`
-5. 保存设置
+1. Go to your GitHub repository Settings
+2. Click Pages on the left sidebar
+3. Select `gh-pages` branch as Source
+4. Select `/ (root)` as directory
+5. Save settings
 
-详细部署教程请查看 [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+For detailed deployment instructions, see [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
 
-## 🔧 技术栈
+## 🔧 Tech Stack
 
-- **React 19** - UI 框架
-- **TypeScript** - 类型安全的 JavaScript
-- **Vite** - 快速的前端构建工具
-- **Tailwind CSS** - 实用优先的 CSS 框架
-- **Wouter** - 轻量级路由库
-- **Lucide React** - 精美的图标库
+- **React 19** - UI framework
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast frontend build tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **Wouter** - Lightweight routing library
+- **Lucide React** - Beautiful icon library
 
-## 💡 常见问题
+## 💡 Frequently Asked Questions
 
-### Q: 修改 JSON 文件后网站没有更新？
+### Q: Website doesn't update after modifying JSON files?
 
-A: 如果是在开发服务器（`pnpm dev`）中，修改保存后会自动热更新。如果没有更新，尝试刷新浏览器。如果是生产环境，需要重新构建并部署。
+A: If you're in the development server (`pnpm dev`), changes should hot reload automatically. If not, try refreshing the browser. For production, you need to rebuild and redeploy.
 
-### Q: 如何使用本地图片？
+### Q: How to use local images?
 
-A: 将图片放在 `public/images/` 目录下（需自行创建 images 文件夹），然后在 JSON 文件中使用 `/images/filename.jpg` 引用。
+A: Place images in the `public/images/` directory (create the images folder if needed), then reference them in JSON files using `/images/filename.jpg`.
 
-### Q: JSON 文件格式错误怎么办？
+### Q: JSON file format error?
 
-A: 使用在线工具如 [JSONLint](https://jsonlint.com/) 验证 JSON 格式是否正确。常见错误：
-- 缺少逗号或多余逗号
-- 使用单引号而非双引号
-- 最后一个元素后有多余逗号
+A: Use online tools like [JSONLint](https://jsonlint.com/) to validate JSON format. Common errors:
+- Missing or extra commas
+- Using single quotes instead of double quotes
+- Extra comma after last element
 
-### Q: 如何修改网站颜色主题？
+### Q: How to modify website color theme?
 
-A: 编辑 `tailwind.config.js` 文件中的颜色配置，或直接在组件中修改 Tailwind CSS 类名。
+A: Edit color configuration in `tailwind.config.js` file, or directly modify Tailwind CSS class names in components.
 
-### Q: 部署后 404 页面无法跳转？
+### Q: 404 page doesn't redirect after deployment?
 
-A: 确保 `public/404.html` 文件存在，且包含正确的重定向脚本（项目已配置好）。
+A: Make sure `public/404.html` file exists and contains the correct redirect script (already configured in the project).
 
-## 📝 许可证
+### Q: How to upload PDF, Word and other files?
+
+A: Recommended to upload files to cloud storage services (e.g., Google Drive, Dropbox, OneDrive), then get share links and fill in the `url` field in JSON files. You can also place files in `public/files/` directory (create if needed) and reference with `/files/filename.pdf`.
+
+### Q: What file types are supported?
+
+A: The following file types are supported, each displaying different icons and colors:
+- PDF (`"pdf"`)
+- Word (`"doc"`, `"docx"`)
+- PowerPoint (`"ppt"`, `"pptx"`)
+- Excel (`"xls"`, `"xlsx"`)
+- Image (`"image"`)
+- Video (`"video"`)
+- Web link (`"web"`)
+- Other (`"other"`)
+
+### Q: How to use the presentation detail page?
+
+A: Click on any presentation card in the presentations list page to enter the detail page. The detail page displays complete presentation information, all files, and recordings. Make sure to correctly fill in the `id` field in JSON, as routing uses ID for navigation.
+
+## 📝 License
 
 MIT License
 
 ---
 
-**提示**: 如遇到问题，请查看 [GitHub Issues](https://github.com/your-repo/issues) 或联系项目维护者。
+**Tip**: If you encounter issues, check [GitHub Issues](https://github.com/your-repo/issues) or contact the project maintainer.

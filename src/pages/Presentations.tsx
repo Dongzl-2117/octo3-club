@@ -1,7 +1,11 @@
-import { Calendar, User, Clock, CheckCircle2, Sparkles } from "lucide-react";
+import { Calendar, User, Clock, CheckCircle2, Sparkles, ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import presentations from "../data/presentations.json";
+import presentationsData from "../data/presentations.json";
+import type { Presentation } from "../types";
+
+const presentations: Presentation[] = presentationsData as Presentation[];
 
 export default function Presentations() {
   const upcoming = presentations.filter((p) => p.status === "upcoming");
@@ -44,9 +48,10 @@ export default function Presentations() {
           ) : (
             <div className="grid md:grid-cols-2 gap-8">
               {upcoming.map((presentation, index) => (
-                <div
+                <Link
                   key={presentation.id}
-                  className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-green-200 hover:border-green-400 hover:-translate-y-2"
+                  href={`/presentations/${presentation.id}`}
+                  className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border-2 border-green-200 hover:border-green-400 hover:-translate-y-2 cursor-pointer block"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-6">
@@ -66,7 +71,7 @@ export default function Presentations() {
                       {presentation.description}
                     </p>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-3 mb-4">
                       <div className="flex items-center gap-3 text-gray-700">
                         <div className="p-2 bg-blue-50 rounded-lg">
                           <User size={18} className="text-blue-600" />
@@ -93,8 +98,13 @@ export default function Presentations() {
                         </div>
                       </div>
                     </div>
+
+                    <div className="flex items-center gap-2 text-green-600 font-medium group-hover:gap-3 transition-all">
+                      View Details
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}
@@ -117,9 +127,10 @@ export default function Presentations() {
           ) : (
             <div className="grid md:grid-cols-2 gap-8">
               {past.map((presentation, index) => (
-                <div
+                <Link
                   key={presentation.id}
-                  className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-gray-300 hover:-translate-y-1"
+                  href={`/presentations/${presentation.id}`}
+                  className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-gray-300 hover:-translate-y-1 cursor-pointer block"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   <div className="bg-gradient-to-br from-gray-100 to-gray-200 p-6 border-b border-gray-300">
@@ -133,7 +144,7 @@ export default function Presentations() {
                       {presentation.description}
                     </p>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-3 mb-4">
                       <div className="flex items-center gap-3 text-gray-700">
                         <div className="p-2 bg-blue-50 rounded-lg">
                           <User size={18} className="text-blue-600" />
@@ -160,8 +171,13 @@ export default function Presentations() {
                         </div>
                       </div>
                     </div>
+
+                    <div className="flex items-center gap-2 text-blue-600 font-medium group-hover:gap-3 transition-all">
+                      View Details
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

@@ -1,7 +1,11 @@
-import { ExternalLink, BookOpen, Tag } from "lucide-react";
+import { ExternalLink, BookOpen, Tag, Download } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import resources from "../data/resources.json";
+import resourcesData from "../data/resources.json";
+import type { Resource } from "../types";
+import { getFileIcon, getFileColor, getFileTypeName } from "../utils/fileIcons";
+
+const resources: Resource[] = resourcesData as Resource[];
 
 export default function Resources() {
   // Group resources by category
@@ -65,40 +69,68 @@ export default function Resources() {
               </div>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-6">
-                {categoryResources.map((resource, index) => (
-                  <div
-                    key={resource.id}
-                    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-gray-300 hover:-translate-y-1"
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    <div className={`h-2 bg-gradient-to-r ${colorScheme.gradient}`}></div>
-                    
-                    <div className="p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors flex-1">
-                          {resource.title}
-                        </h4>
-                        <div className={`p-2 rounded-lg ${colorScheme.bg} ml-2 flex-shrink-0`}>
-                          <BookOpen size={20} className={colorScheme.text} />
+                {categoryResources.map((resource, index) => {
+                  const fileColor = getFileColor(resource.fileType);
+                  return (
+                    <div
+                      key={resource.id}
+                      className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-200 hover:border-gray-300 hover:-translate-y-1"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <div className={`h-2 bg-gradient-to-r ${colorScheme.gradient}`}></div>
+                      
+                      <div className="p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex-1">
+                            <h4 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                              {resource.title}
+                            </h4>
+                            <div className="flex items-center gap-2">
+                              <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium ${fileColor.bg} ${fileColor.text} border ${fileColor.border}`}>
+                                {getFileIcon(resource.fileType, 14)}
+                                {getFileTypeName(resource.fileType)}
+                              </span>
+                              {resource.fileSize && (
+                                <span className="text-xs text-gray-500">
+                                  {resource.fileSize}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className={`p-2 rounded-lg ${colorScheme.bg} ml-2 flex-shrink-0`}>
+                            <BookOpen size={20} className={colorScheme.text} />
+                          </div>
+                        </div>
+                        
+                        <p className="text-gray-600 mb-6 leading-relaxed">
+                          {resource.description}
+                        </p>
+                        
+                        <div className="flex gap-2">
+                          <a
+                            href={resource.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`group/link flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${colorScheme.gradient} text-white font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}
+                          >
+                            {resource.fileType === "web" ? "Visit Link" : "View Resource"}
+                            <ExternalLink size={16} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                          </a>
+                          {resource.downloadable !== false && resource.fileType !== "web" && (
+                            <a
+                              href={resource.url}
+                              download
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition-all duration-300"
+                              title="Download File"
+                            >
+                              <Download size={16} />
+                            </a>
+                          )}
                         </div>
                       </div>
-                      
-                      <p className="text-gray-600 mb-6 leading-relaxed">
-                        {resource.description}
-                      </p>
-                      
-                      <a
-                        href={resource.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`group/link inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r ${colorScheme.gradient} text-white font-medium hover:shadow-lg transition-all duration-300 hover:scale-105`}
-                      >
-                        Visit Resource
-                        <ExternalLink size={16} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                      </a>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
           );

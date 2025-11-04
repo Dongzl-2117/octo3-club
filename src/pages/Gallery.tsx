@@ -1,7 +1,10 @@
 import { Image as ImageIcon, Camera } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import photos from "../data/photos.json";
+import photosData from "../data/photos.json";
+import type { Photo } from "../types";
+
+const photos: Photo[] = photosData as Photo[];
 
 export default function Gallery() {
   return (

@@ -1,4 +1,4 @@
-import { ExternalLink, BookOpen, Tag, Sparkles } from "lucide-react";
+import { ExternalLink, BookOpen, Tag } from "lucide-react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import resources from "../data/resources.json";
@@ -50,7 +50,7 @@ export default function Resources() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        {categories.map((category, categoryIndex) => {
+        {categories.map((category) => {
           const categoryResources = resources.filter((r) => r.category === category);
           const colorScheme = categoryColors[category] || categoryColors["Programming"];
           

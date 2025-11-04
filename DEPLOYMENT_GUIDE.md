@@ -1,6 +1,6 @@
-# HKU CS Study Group - GitHub Pages 部署教程
+# Octo3 Club - GitHub Pages 部署教程
 
-本文档将指导您如何将 HKU CS Study Group 静态网站部署到 GitHub Pages，使其可以通过 `username.github.io/repository-name` 的形式访问。
+本文档将指导您如何将 Octo3 Club 静态网站部署到 GitHub Pages，使其可以通过 `octo3-club.github.io` 的形式访问。
 
 ---
 

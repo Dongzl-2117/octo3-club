@@ -1,0 +1,33 @@
+[
+  {
+    "id": "1",
+    "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800",
+    "caption": "Group study session at HKU library"
+  },
+  {
+    "id": "2",
+    "url": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
+    "caption": "Workshop on web development"
+  },
+  {
+    "id": "3",
+    "url": "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800",
+    "caption": "Team collaboration during hackathon"
+  },
+  {
+    "id": "4",
+    "url": "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800",
+    "caption": "Presentation on machine learning"
+  },
+  {
+    "id": "5",
+    "url": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800",
+    "caption": "Coding workshop"
+  },
+  {
+    "id": "6",
+    "url": "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800",
+    "caption": "Group discussion"
+  }
+]
+

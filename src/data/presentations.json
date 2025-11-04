@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "title": "Introduction to Machine Learning",
+    "description": "An overview of machine learning concepts, algorithms, and applications in modern computer science.",
+    "speaker": "Dr. John Smith",
+    "date": "2025-11-15",
+    "status": "upcoming"
+  },
+  {
+    "id": "2",
+    "title": "Web Development Best Practices",
+    "description": "Learn about modern web development techniques, frameworks, and design patterns.",
+    "speaker": "Jane Doe",
+    "date": "2025-10-20",
+    "status": "past"
+  },
+  {
+    "id": "3",
+    "title": "Database Optimization Techniques",
+    "description": "Deep dive into database indexing, query optimization, and performance tuning.",
+    "speaker": "Prof. Alice Wang",
+    "date": "2025-11-22",
+    "status": "upcoming"
+  }
+]
+

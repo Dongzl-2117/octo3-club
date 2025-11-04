@@ -1,0 +1,31 @@
+[
+  {
+    "id": "1",
+    "title": "Python Programming Guide",
+    "description": "Comprehensive guide to Python programming for beginners and intermediate learners.",
+    "category": "Programming",
+    "url": "https://docs.python.org/3/tutorial/"
+  },
+  {
+    "id": "2",
+    "title": "Data Structures and Algorithms",
+    "description": "Essential data structures and algorithms every computer science student should know.",
+    "category": "Algorithms",
+    "url": "https://www.geeksforgeeks.org/data-structures/"
+  },
+  {
+    "id": "3",
+    "title": "Machine Learning Coursera",
+    "description": "Andrew Ng's famous machine learning course on Coursera.",
+    "category": "Machine Learning",
+    "url": "https://www.coursera.org/learn/machine-learning"
+  },
+  {
+    "id": "4",
+    "title": "React Documentation",
+    "description": "Official React documentation with tutorials and API reference.",
+    "category": "Web Development",
+    "url": "https://react.dev/"
+  }
+]
+
